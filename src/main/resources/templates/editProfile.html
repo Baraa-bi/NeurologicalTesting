@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ASIA Neurological Testing</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/modern-business.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home">ASIA Neurological Testing</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contactUs">Contact</a></li>
+                <li th:attr="style=${notLogged}"><a href="/signUp">Sign Up</a></li>
+                <li th:attr="style=${notLogged}"><a href="/login">Login</a></li>
+                <li th:attr="style=${logged}" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img class="img-responsive img-circle" style="display:inline;width:30px;height:30px"  th:attr="src=${photo}">
+                        <span th:text="${user.userName}"></span>
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:attr="href=${profile}">Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+
+            <h1 class="page-header">Edit Profile</h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Intro Content -->
+    <div class="container" style="background:url('img/slider1.png'); border-radius:9px">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="text-center">
+                        <h6>Upload a different photo...</h6>
+                        <img class="img-circle img-responsive" alt="" th:attr="src=${photo}" src="http://placehold.it/250x250">
+                        <hr>
+                        <input type="file" class="form-control" style="height:100%">
+                    </div>
+                </div>
+                <!-- edit form column -->
+                <div class="col-md-9 col-sm-6 col-xs-12 personal-info">
+                    <div class="alert alert-info alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a>
+                        <i class="fa fa-coffee"></i>
+                        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                    </div>
+                    <h3>My Info</h3>
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">User name:</label>
+                            <div class="col-lg-8">
+                                <input id="userName" th:value="${user.userName}" type="text" placeholder="User Name" class="form-control" name="userName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last name:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" value="Bishop" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Company:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" value="" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Email:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" value="janesemail@gmail.com" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Time Zone:</label>
+                            <div class="col-lg-8">
+                                <div class="ui-select">
+                                    <select id="user_time_zone" class="form-control">
+                                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Username:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" value="janeuser" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Password:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" value="11111122333" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Confirm password:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" value="11111122333" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <input class="btn btn-primary" value="Save Changes" type="button">
+                                <span></span>
+                                <input class="btn btn-default" value="Cancel" type="reset">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+    </div>
+
+    <!-- /.row -->
+
+    <!-- Team Members -->
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; ASIA Neurological Testing 2017</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/human.js"></script>
+
+</body>
+
+</html>
