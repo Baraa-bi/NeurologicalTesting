@@ -88,7 +88,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/signUp">SignUp</a>
+                    <a class="navbar-brand" href="/home">Login</a>
                 </div>
             </div>
         </nav>
@@ -99,52 +99,11 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                SignUp
+                                Login
                             </div>
                             <div class="card-content">
                                 <div class="row">
-                                    <div class="col-md-offset-2 col-lg-8">
-                                        <form action="/signUp" method="post" enctype="multipart/form-data">
-                                            <div class="h6 text-danger" th:text="${userName}"></div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">User name</label>
-                                                <input th:value="${user.userName}" type="text" name="userName" class="form-control" >
-                                            </div>
-                                            <div class="h6 text-danger" th:text="${password}"></div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Password</label>
-                                                <input type="password" name="password" class="form-control" >
-                                            </div>
-                                            <div class="h5 text-danger" th:text="${password}"></div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Confirm password</label>
-                                                <input type="password"  class="form-control" >
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Email address</label>
-                                                <input name="email" type="email" class="form-control" >
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Job name</label>
-                                                <input name="job" type="text" class="form-control" >
-                                            </div>
-                                            <div class="form-group is-empty is-fileinput">
-                                                <input type="file" name="file" id="inputFile4" accept="image/*" multiple="">
-                                                <div class="input-group">
-                                                    <input type="text" readonly=""  class="form-control" placeholder="Profile Picture">
-                                                    <span class="input-group-btn input-group-sm">
-                  <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">attach_file</i>
-                  </button>
-                </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <button type="submit" class="btn btn-primary pull-right">Register Now</button>
-                                            </div>
-                                        </form>
+                                    <div class="col-md-10 col-md-offset-1">
                                     </div>
                                 </div>
                             </div>
