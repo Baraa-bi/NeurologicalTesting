@@ -64,7 +64,7 @@ public class Login {
         model.addAttribute("user",new User());
         model.addAttribute("logged","display:none");
         model.addAttribute("notLogged","display:inline");
-        return "home";
+        return "redirect:/home";
     }
 
     @Autowired

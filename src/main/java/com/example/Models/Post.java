@@ -1,5 +1,6 @@
 package com.example.Models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ public class Post {
     @GeneratedValue
     Long postId;
     String postTitle;
+    @Column(columnDefinition = "TEXT")
     String postText;
     Date CreatedDate;
     String postComments;

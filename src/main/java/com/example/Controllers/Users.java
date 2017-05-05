@@ -110,12 +110,9 @@ public class Users {
 
     @RequestMapping(value = "/{userName}.png")
     @ResponseBody
-    public ResponseEntity getProfileImage(@SessionAttribute User user,@PathVariable String userName)
+    public ResponseEntity getProfileImage(@PathVariable String userName)
     {
-        if(user==null)
-            return null;
-        else
-        {
+
             User user1 = userRepo.findByUserName(userName);
             if(fileRepo.findByUserId(user1.getId())!=null) {
                 byte[] content = fileRepo.findByUserId(user1.getId()).getFile();
@@ -125,7 +122,7 @@ public class Users {
             }
             else
                 return null;
-            }
+
     }
 
     @Autowired

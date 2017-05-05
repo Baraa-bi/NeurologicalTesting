@@ -1,6 +1,7 @@
 package com.example.Controllers;
 
 import com.example.Models.User;
+import com.example.Repositories.PostsRepo;
 import com.example.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -18,13 +19,15 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class Home {
 
+    PostsRepo postsRepo;
+
     @RequestMapping(value = "/test")
     public String test()
     {
         return "hello";
     }
 
-    @RequestMapping(value = "/home")
+    @RequestMapping({"home","/"})
     public String home(Model model,@SessionAttribute(required = false) User user)
     {
         if(user!=null) {
@@ -47,16 +50,15 @@ public class Home {
     }
 
 
+    @RequestMapping("/blog")
+    public String blog (Model model){
+        model.addAttribute("posts",postsRepo.findAll());
+        return "blog";
+    }
 
 
-
-
-
-
-
-
-
-
-
-
+    @Autowired
+    public void setPostsRepo(PostsRepo postsRepo) {
+        this.postsRepo = postsRepo;
+    }
 }

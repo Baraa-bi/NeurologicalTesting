@@ -36,8 +36,9 @@ public class Tests {
 
     private JavaMailSender mailSender;
 
+
     @Autowired
-    public Tests(JavaMailSender mailSender) {
+    public void setMailSender(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 

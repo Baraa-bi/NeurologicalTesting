@@ -1,7 +1,6 @@
 package com.example.Controllers;
 
 
-import com.example.Models.File;
 import com.example.Models.User;
 import com.example.Repositories.FileRepo;
 import com.example.Repositories.UserRepo;
@@ -14,11 +13,18 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Controller
@@ -73,7 +79,19 @@ public class SignUp {
         session.setAttribute("user",user);
         session.setMaxInactiveInterval(20*60);
         userRepo.save(user);
-        fileRepo.save(new File(user.getUserName(),"png",null,user.getId(),null,file.getBytes()));
+
+
+
+        BufferedImage bufferedImage = ImageIO.read(file.getInputStream());
+        BufferedImage newImage =resizeImageWithHint(bufferedImage,bufferedImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType());
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(newImage, "jpg", baos );
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+
+
+        fileRepo.save(new com.example.Models.File(user.getUserName(),"png",null,user.getId(),null,imageInByte));
         return "redirect:/users/"+user.getUserName();
     }
 
@@ -96,5 +114,23 @@ public class SignUp {
             result = false;
         }
         return result;
+    }
+
+    private static BufferedImage resizeImageWithHint(BufferedImage originalImage, int type){
+
+        BufferedImage resizedImage = new BufferedImage(250, 250, type);
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(originalImage, 0, 0, 250, 250, null);
+        g.dispose();
+        g.setComposite(AlphaComposite.Src);
+
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.setRenderingHint(RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        return resizedImage;
     }
 }
