@@ -89,6 +89,18 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/home">Blog</a>
+                    <div class="pull-right text-right">
+                        <li th:attr="style=${logged}" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img class="img-responsive img-circle" style="display:inline;width:30px;height:30px"  th:attr="src=${photo}">
+                                <span th:text="${user.userName}"></span>
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a th:attr="href=${profile}">Profile</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    </div>
+
                 </div>
             </div>
         </nav>

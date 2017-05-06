@@ -1,608 +1,648 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
 <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>ASIA Neurological Testing</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>Material Dashboard by Creative Tim</title>
 
-    <!-- Custom CSS -->
-    <link href="/css/modern-business.css" rel="stylesheet">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-    <link href="/css/card.css" rel="stylesheet">
 
-    <link href="/css/human.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap core CSS     -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!--  Material Dashboard CSS    -->
+    <link href="/css/material-dashboard.css" rel="stylesheet"/>
 
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/css/demo.css" rel="stylesheet" />
+    <link href="/css/human.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    <style>
+.Harthaout{
+  width:720; height:400px;
+}
+.Harthain{
+  width:100%; height:100%;
+  position:absolute;}
+  canvas{
+    width:100%; height:100%;
+    position:absolute; top:0px; left:0px;
+    z-index: 30;
+  }
+svg{
+  position:absolute; top:0px; left:0px;
+
+    z-index:0;
+}
+.hid{
+visibility: hidden;
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
+        <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
+            Tip 2: you can also add an image using data-image tag
+        -->
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/home">ASIA Neurological Testing</a>
+        <div class="logo">
+            <a href="/home" class="simple-text">
+                Asia Nurogical Testing
+            </a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/services">Services</a></li>
-                <li><a href="/contactUs">Contact</a></li>
-                <li th:attr="style=${notLogged}"><a href="/signUp">Sign Up</a></li>
-                <li th:attr="style=${notLogged}"><a href="/login">Login</a></li>
-                <li th:attr="style=${logged}" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img class="img-responsive img-circle" style="display:inline;width:30px;height:30px"  th:attr="src=${photo}">
-                        <span th:text="${user.userName}"></span>
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a th:attr="href=${profile}">Profile</a></li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
+
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li>
+                    <a href="/home">
+                        <i class="material-icons">dashboard</i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/login">
+                        <i class="material-icons">person</i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog">
+                        <i class="material-icons">content_paste</i>
+                        <p>Blog</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/about">
+                        <i class="material-icons">library_books</i>
+                        <p>About</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contactUs">
+                        <i class="material-icons">bubble_chart</i>
+                        <p>Cotact Us</p>
+                    </a>
                 </li>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
-</nav>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=${photo}">
-                    <a class="h4 text-primary" href="/users" th:text="${user.userName}"></a>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/login">Patient Profile</a>
                 </div>
-                <div class="panel-body">
-                    <div class="text-center">
-                        <div class="h1 text-primary">Case Info</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <img class="img-responsive" style="border-radius:50%;width:250px;height:250px"; alt="" th:attr="src=${casePhoto}" src="http://placehold.it/250x250">
-                        </div>
-                        <div class="col-md-9 col-sm-6 col-xs-12">
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=${photo}">
+                                <a class="h4 text-primary" href="/users" th:text="${user.userName}">User</a>
+                            </div>
                             <hr>
-                            <div class="form-group h5">
-                                <label class="">Case Name:</label>
-                                <span class="text-primary" th:text="${case.caseName}"></span>
-                            </div><hr>
-                            <div class="form-group h5">
-                                <label class="">Mental State:</label>
-                                <span class="text-primary" th:text="${case.mentalState}"></span>
-                            </div><hr>
-                            <div class="form-group h5">
-                                <label class="">Email:</label>
-                                <span class="text-primary" th:text="${case.email}"></span>
-                            </div><hr>
-                            <div class="form-group h5">
-                                <label class="">Info:</label>
-                                <span class="text-primary" th:text="${case.info}"></span>
-                            </div><hr>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="col-lg-12">
-                        <ul id="myTab" class="nav nav-tabs ">
-                            <li class="active" ><a id="s1" href="#service-one" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Tests</a>
-                            <li ><a id="s2" onmouseover="updateHuman()" href="#service-two" data-toggle="tab" aria-expanded="false"><i class="fa fa-file-text"></i> New Test</a></li>
-                        </ul>
+                            <div class="card-content">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img"  th:attr="src=${casePhoto}" src="/img/faces/marc.jpg" />
+                                </a>
+                            </div>
 
-                        <div id="myTabContent" class="tab-content">
-                            <div class="tab-pane fade active in" id="service-one">
+                            <div class="content">
+                                <h6 class="category text-gray" th:text="${case.email}">CEO / Co-Founder</h6>
+                                <h4 class="card-title" th:text="${case.caseName}">Alec Thompson</h4>
+                                <h6 class="card-title" th:text="${case.birthDate}">Alec Thompson</h6>
+                                <p class="card-content" th:text="${case.info}">
+                                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                </p>
 
-                                <div class="row">
+                                <div class="col-lg-12">
+                                    <ul id="myTab" class="nav nav-tabs nav-justified">
+                                        <li class="active" ><a id="s1" href="#service-one" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Tests</a>
+                                        <li ><a id="s2" onmouseover="updateHuman()" href="#service-two" data-toggle="tab" aria-expanded="false"><i class="fa fa-file-text"></i> New Test</a></li>
+                                    </ul>
 
-                                    <hr>
-                                    <h1 class="text-warning text-center" th:text="${#lists.size(tests)}==0?${case.caseName}+' has no Tests yet'" ></h1>
-                                    <hr>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane fade active in" id="service-one">
+
+                                            <div class="row">
+
+                                                <hr>
+                                                <h1 class="text-warning text-center" th:text="${#lists.size(tests)}==0?${case.caseName}+' has no Tests yet'" ></h1>
+                                                <hr>
                                                 <div class="col-md-6 col-md-offset-3"  th:each="test:${tests}" th:attr="id=${test.id}">
-                                                        <div class="pull-left">
+                                                    <div class="pull-left">
                                 <span class="fa-stack fa-2x">
                                       <i class="fa fa-circle fa-stack-2x text-primary"></i>
                                       <i class="fa fa-file-text fa-stack-1x fa-inverse"></i>
                                 </span>
-                                                        </div>
-                                                            <h4 class="media-heading" th:text="${test.testName}">Test Name</h4>
-                                                            <p  th:text="|Created at : ${test.createdDate}|">Test Info</p>
-                                                            <div class="text-right">
+                                                    </div>
+                                                    <h4 class="media-heading" th:text="${test.testName}">Test Name</h4>
+                                                    <p  th:text="|Created at : ${test.createdDate}|">Test Info</p>
+                                                    <div class="text-right">
+                                                        <div class="btn-group">
                                                             <div class="btn-group">
-                                                                <div class="btn-group">
-                                                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                                                        Download <span class="caret"></span></button>
-                                                                    <ul class="dropdown-menu" role="menu">
-                                                                        <li><a href="#">PDF</a></li>
-                                                                        <li><a th:attr="onclick=|sendTo('${testo}/${test.id}/sendTo?email=${user.email}')|" href="#">Send To Me</a></li>
-                                                                        <li><a th:attr="onclick=|sendTo('${testo}/${test.id}/sendTo?email=${case.email}')|" href="#" th:text="|Send To ${case.caseName}|"></a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                    <button th:attr="onclick=|editTest('${testo}/${test.id}.json','${testFormEdit}?id=${test.id}')|" class="btn btn-primary">Edit</button>
-                                                                    <button class="btn btn-danger" th:attr="onclick=|deleteTest('${test.id}','${deleteTest}${test.id}')|">Delete</button>
+                                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                                                    Download <span class="caret"></span></button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li><a href="#">PDF</a></li>
+                                                                    <li><a th:attr="onclick=|sendTo('${testo}/${test.id}/sendTo?email=${user.email}')|" href="#">Send To Me</a></li>
+                                                                    <li><a th:attr="onclick=|sendTo('${testo}/${test.id}/sendTo?email=${case.email}')|" href="#" th:text="|Send To ${case.caseName}|">Send To Patient</a></li>
+                                                                </ul>
                                                             </div>
-                                                            </div>
+                                                            <button th:attr="onclick=|editTest('${testo}/${test.id}.json','${testFormEdit}?id=${test.id}')|" class="btn btn-primary">Edit</button>
+                                                            <button class="btn btn-danger" th:attr="onclick=|deleteTest('${test.id}','${deleteTest}${test.id}')|">Delete</button>
+                                                        </div>
+                                                    </div>
                                                     <hr>
                                                 </div>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                            <div class="tab-pane fade" id="service-two">
-                                <div class="row">
-                                    <div class="col-lg-12">
+                                        <div class="tab-pane fade" id="service-two">
+                                            <div class="row text-center" style="font-size: small"><hr>
+                                                <div class="col-lg-12">
 
-                                        <div id="humanTest">
-                                            <div id="testData">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="table-responsive" >
-                                                            <table>
-                                                                <thead>
-                                                                <tr>
-                                                                    <th colspan="3">MOTOR<br>KEY MUSCLES</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="visibility:hidden">FF</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th>R</th>
-                                                                    <th>L</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td>C2</td>
-                                                                    <td><input readonly  size="2"  id='C2_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2"  id='C2_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>C3</td>
-                                                                    <td><input readonly  size="2" id='C3_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='C3_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>C4</td>
-                                                                    <td><input readonly  size="2" id='C4_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='C4_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>C5</td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td>Elbow flexors</td>
-                                                                </tr>
+                                                    <div id="humanTest">
+                                                        <div id="testData">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="table-responsive" >
+                                                                        <table id='mus'>
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th colspan="3">MOTOR<br>KEY MUSCLES</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th style="visibility:hidden">FF</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th></th>
+                                                                                <th>R</th>
+                                                                                <th>L</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td>C2</td>
+                                                                                <td><input readonly  size="2"  id='C2_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly  size="2"  id='C2_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>C3</td>
+                                                                                <td><input readonly  size="2" id='C3_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly  size="2" id='C3_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>C4</td>
+                                                                                <td><input readonly  size="2" id='C4_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly  size="2" id='C4_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>C5</td>
+                                                                                <td><input   id="C5_Right_m" size="2" class="form-control" type="text"  ></td>
+                                                                                <td><input   id="C5_Left_m" size="2" class="form-control" type="text"  ></td>
+                                                                                <td>Elbow flexors</td>
+                                                                            </tr>
 
-                                                                <tr>
-                                                                    <td>C6</td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td>Wrist extensors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>C7</td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td>Elbow extensors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>C8</td>
-                                                                    <td><input   size="2" class="form-control" type="text"  ></td>
-                                                                    <td><input   size="2"  data-toggle="tooltip" title="ala rasi" class="form-control" type="text"  ></td>
-                                                                    <td>Finger flexors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T1</td>
-                                                                    <td><input   size="2" class="form-control" type="text"></td>
-                                                                    <td><input   size="2"  data-toggle="tooltip" title="ala rasi" class="form-control" type="text"></td>
-                                                                    <td>Finger abductors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T2</td>
-                                                                    <td><input readonly  size="2" id='T2_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T2_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T3</td>
-                                                                    <td><input readonly  size="2" id='T3_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T3_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T4</td>
-                                                                    <td><input readonly  size="2" id='T4_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T4_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T5</td>
-                                                                    <td><input readonly  size="2" id='T5_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T5_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T6</td>
-                                                                    <td><input readonly  size="2" id='T6_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T6_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T7</td>
-                                                                    <td><input readonly  size="2" id='T7_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T7_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T8</td>
-                                                                    <td><input readonly  size="2" id='T8_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T8_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T9</td>
-                                                                    <td><input readonly  size="2" id='T9_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T9_Right' class='form-control' type='text'></td>
-                                                                </tr>
+                                                                            <tr>
+                                                                                <td>C6</td>
+                                                                                <td><input   id="C6_Right_m" size="2" class="form-control" type="text"  ></td>
+                                                                                <td><input   id="C6_Left_m"  size="2" class="form-control" type="text"  ></td>
+                                                                                <td>Wrist extensors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>C7</td>
+                                                                                <td><input   id="C7_Right_m" size="2" class="form-control" type="text"  ></td>
+                                                                                <td><input   id="C7_Left_m"  size="2" class="form-control" type="text"  ></td>
+                                                                                <td>Elbow extensors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>C8</td>
+                                                                                <td><input   id="C8_Right_m" size="2" class="form-control" type="text"  ></td>
+                                                                                <td><input   id="C8_Left_m"  size="2"  data-toggle="tooltip" title="ala rasi" class="form-control" type="text"  ></td>
+                                                                                <td>Finger flexors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T1</td>
+                                                                                <td><input   id="T1_Right_m" size="2" class="form-control" type="text"></td>
+                                                                                <td><input   id="T1_Left_m"  size="2"  data-toggle="tooltip" title="ala rasi" class="form-control" type="text"></td>
+                                                                                <td>Finger abductors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T2</td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T2_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T2_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T3</td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T3_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T3_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T4</td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T4_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T4_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T5</td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T5_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly = "readonly"  size="2" id='T5_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T6</td>
+                                                                                <td><input readonly='readonly'  size="2" id='T6_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly='readonly'  size="2" id='T6_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T7</td>
+                                                                                <td><input readonly='readonly'  size="2" id='T7_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly='readonly'  size="2" id='T7_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T8</td>
+                                                                                <td><input readonly='readonly'  size="2" id='T8_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly='readonly'  size="2" id='T8_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T9</td>
+                                                                                <td><input readonly='readonly'  size="2" id='T9_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly='readonly'  size="2" id='T9_Right' class='form-control' type='text'></td>
+                                                                            </tr>
 
-                                                                <tr>
-                                                                    <td>T10</td>
-                                                                    <td><input readonly  size="2" id='T10_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T10_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T11</td>
-                                                                    <td><input readonly  size="2" id='T11_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T11_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>T12</td>
-                                                                    <td><input readonly  size="2" id='T12_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='T12_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>L1</td>
-                                                                    <td><input readonly  size="2" id='L1_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='L1_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>L2</td>
-                                                                    <td><input   size="2" id='L2_Left' class='form-control' type='text'></td>
-                                                                    <td><input   size="2" id='L2_Right' class='form-control' type='text'></td>
-                                                                    <td>Hip flexors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>L3</td>
-                                                                    <td><input   size="2" id='L3_Left' class='form-control' type='text'></td>
-                                                                    <td><input   size="2" id='L3_Right' class='form-control' type='text'></td>
-                                                                    <td>Knee extensors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>L4</td>
-                                                                    <td><input   size="2" id='L4_Left' class='form-control' type='text'></td>
-                                                                    <td><input   size="2" id='L4_Right' class='form-control' type='text'></td>
-                                                                    <td>Ankle dorsiflexors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>L5</td>
-                                                                    <td><input   size="2" id='L5_Left' class='form-control' type='text'></td>
-                                                                    <td><input   size="2" id='L5_Right' class='form-control' type='text'></td>
-                                                                    <td>Long toe extensors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>S1</td>
-                                                                    <td><input   size="2" id='S1_Left' class='form-control' type='text'></td>
-                                                                    <td><input   size="2" id='S1_Right' class='form-control' type='text'></td>
-                                                                    <td>Ankle plantar flexors</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>S2</td>
-                                                                    <td><input readonly  size="2" id='S2_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='S2_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>S3</td>
-                                                                    <td><input readonly  size="2" id='S3_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='S3_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>S4-5</td>
-                                                                    <td><input readonly  size="2" id='S45_Left' class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2" id='S45_Right' class='form-control' type='text'></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>TOT</td>
-                                                                    <td><input readonly  size="2"  class='form-control' type='text'></td>
-                                                                    <td><input readonly  size="2"  class='form-control' type='text'></td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                                            <tr>
+                                                                                <td>T10</td>
+                                                                                <td><input readonly='readonly'  size="2" id='T10_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly='readonly'  size="2" id='T10_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T11</td>
+                                                                                <td><input readonly='readonly'  size="2" id='T11_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly='readonly'  size="2" id='T11_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>T12</td>
+                                                                                <td><input readonly = 'readonly'  size="2" id='T12_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly = 'readonly'  size="2" id='T12_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>L1</td>
+                                                                                <td><input readonly = 'readonly'  size="2" id='L1_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly = 'readonly'  size="2" id='L1_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>L2</td>
+                                                                                <td><input   size="2" id='L2_Left' class='form-control' type='text'></td>
+                                                                                <td><input   size="2" id='L2_Right' class='form-control' type='text'></td>
+                                                                                <td>Hip flexors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>L3</td>
+                                                                                <td><input   size="2" id='L3_Left' class='form-control' type='text'></td>
+                                                                                <td><input   size="2" id='L3_Right' class='form-control' type='text'></td>
+                                                                                <td>Knee extensors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>L4</td>
+                                                                                <td><input   size="2" id='L4_Left' class='form-control' type='text'></td>
+                                                                                <td><input   size="2" id='L4_Right' class='form-control' type='text'></td>
+                                                                                <td>Ankle dorsiflexors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>L5</td>
+                                                                                <td><input   size="2" id='L5_Left' class='form-control' type='text'></td>
+                                                                                <td><input   size="2" id='L5_Right' class='form-control' type='text'></td>
+                                                                                <td>Long toe extensors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>S1</td>
+                                                                                <td><input   size="2" id='S1_Left' class='form-control' type='text'></td>
+                                                                                <td><input   size="2" id='S1_Right' class='form-control' type='text'></td>
+                                                                                <td>Ankle plantar flexors</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>S2</td>
+                                                                                <td><input readonly  size="2" id='S2_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly  size="2" id='S2_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>S3</td>
+                                                                                <td><input readonly  size="2" id='S3_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly  size="2" id='S3_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>S4-5</td>
+                                                                                <td><input readonly  size="2" id='S45_Left' class='form-control' type='text'></td>
+                                                                                <td><input readonly  size="2" id='S45_Right' class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>TOT</td>
+                                                                                <td><input id="mus_total_Right" readonly  size="2"  class='form-control' type='text'></td>
+                                                                                <td><input id="mus_total_Left" readonly  size="2"  class='form-control' type='text'></td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <form>
-                                                            <div class="table-responsive">
-                                                                <table class="data-table" id="data-table">
-                                                                    <thead>
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th colspan="5">SENSORY<br>KEY SENSORY POINTS</th>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <form>
+                                                                        <div class="table-responsive">
+                                                                            <table class="data-table" id="data-table">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th></th>
+                                                                                    <th colspan="5">SENSORY<br>KEY SENSORY POINTS</th>
 
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th colspan="2">Light Touch</th>
-                                                                        <th></th>
-                                                                        <th colspan="2">Pin Prick</th>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th></th>
+                                                                                    <th colspan="2">Light Touch</th>
+                                                                                    <th></th>
+                                                                                    <th colspan="2">Pin Prick</th>
 
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th>R</th>
-                                                                        <th>L</th>
-                                                                        <th></th>
-                                                                        <th>R</th>
-                                                                        <th>L</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    <tr>
-                                                                        <td>C2</td>
-                                                                        <td><input  id='C2_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C2_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C2_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C2_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>C3</td>
-                                                                        <td><input  id='C3_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C3_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C3_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C3_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>C4</td>
-                                                                        <td><input  id='C4_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C4_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C4_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C4_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>C5</td>
-                                                                        <td><input  id='C5_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C5_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C5_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C5_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>C6</td>
-                                                                        <td><input  id='C6_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C6_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C6_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C6_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>C7</td>
-                                                                        <td><input  id='C7_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C7_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C7_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C7_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>C8</td>
-                                                                        <td><input  id='C8_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='C8_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='C8_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='C8_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T1</td>
-                                                                        <td><input  id='T1_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T1_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T1_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T1_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T2</td>
-                                                                        <td><input  id='T2_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T2_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T2_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T2_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T3</td>
-                                                                        <td><input  id='T3_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T3_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T3_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T3_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T4</td>
-                                                                        <td><input  id='T4_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T4_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T4_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T4_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T5</td>
-                                                                        <td><input  id='T5_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T5_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T5_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T5_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T6</td>
-                                                                        <td><input  id='T6_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T6_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T6_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T6_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T7</td>
-                                                                        <td><input  id='T7_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T7_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T7_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T7_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T8</td>
-                                                                        <td><input  id='T8_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T8_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T8_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T8_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T9</td>
-                                                                        <td><input  id='T9_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T9_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T9_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T9_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T10</td>
-                                                                        <td><input  id='T10_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T10_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T10_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T10_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T11</td>
-                                                                        <td><input  id='T11_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T11_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T11_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T11_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>T12</td>
-                                                                        <td><input  id='T12_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='T12_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='T12_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='T12_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>L1</td>
-                                                                        <td><input  id='L1_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='L1_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='L1_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='L1_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>L2</td>
-                                                                        <td><input  id='L2_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='L2_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='L2_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='L2_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>L3</td>
-                                                                        <td><input  id='L3_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='L3_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='L3_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='L3_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>L4</td>
-                                                                        <td><input  id='L4_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='L4_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='L4_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='L4_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>L5</td>
-                                                                        <td><input  id='L5_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='L5_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='L5_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='L5_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>S1</td>
-                                                                        <td><input  id='S1_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='S1_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='S1_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='S1_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>S2</td>
-                                                                        <td><input  id='S2_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='S2_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='S2_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='S2_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>S3</td>
-                                                                        <td><input  id='S3_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='S3_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='S3_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input  id='S3_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>S4-5</td>
-                                                                        <td><input  id='S45_Right_lt' class='form-control' type='text'></td>
-                                                                        <td><input  id='S45_Left_lt' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input  id='S45_Right_pp' class='form-control' type='text'></td>
-                                                                        <td><input   id='S45_Left_pp' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>TOT</td>
-                                                                        <td><input id='Right_lt_total' class='form-control' type='text'></td>
-                                                                        <td><input id='Left_lt_total' class='form-control' type='text'></td>
-                                                                        <td></td>
-                                                                        <td><input id='Right_pp_total' class='form-control' type='text'></td>
-                                                                        <td><input id='Right_pp1_total' class='form-control' type='text'></td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </form>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th></th>
+                                                                                    <th>R</th>
+                                                                                    <th>L</th>
+                                                                                    <th></th>
+                                                                                    <th>R</th>
+                                                                                    <th>L</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                <tr>
+                                                                                    <td>C2</td>
+                                                                                    <td><input  id='C2_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C2_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C2_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C2_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>C3</td>
+                                                                                    <td><input  id='C3_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C3_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C3_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C3_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>C4</td>
+                                                                                    <td><input  id='C4_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C4_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C4_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C4_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>C5</td>
+                                                                                    <td><input  id='C5_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C5_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C5_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C5_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>C6</td>
+                                                                                    <td><input  id='C6_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C6_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C6_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C6_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>C7</td>
+                                                                                    <td><input  id='C7_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C7_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C7_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C7_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>C8</td>
+                                                                                    <td><input  id='C8_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C8_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='C8_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='C8_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T1</td>
+                                                                                    <td><input  id='T1_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T1_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T1_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T1_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T2</td>
+                                                                                    <td><input  id='T2_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T2_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T2_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T2_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T3</td>
+                                                                                    <td><input  id='T3_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T3_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T3_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T3_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T4</td>
+                                                                                    <td><input  id='T4_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T4_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T4_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T4_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T5</td>
+                                                                                    <td><input  id='T5_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T5_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T5_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T5_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T6</td>
+                                                                                    <td><input  id='T6_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T6_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T6_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T6_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T7</td>
+                                                                                    <td><input  id='T7_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T7_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T7_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T7_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T8</td>
+                                                                                    <td><input  id='T8_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T8_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T8_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T8_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T9</td>
+                                                                                    <td><input  id='T9_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T9_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T9_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T9_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T10</td>
+                                                                                    <td><input  id='T10_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T10_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T10_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T10_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T11</td>
+                                                                                    <td><input  id='T11_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T11_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T11_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T11_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>T12</td>
+                                                                                    <td><input  id='T12_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T12_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='T12_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='T12_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>L1</td>
+                                                                                    <td><input  id='L1_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L1_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='L1_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L1_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>L2</td>
+                                                                                    <td><input  id='L2_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L2_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='L2_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L2_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>L3</td>
+                                                                                    <td><input  id='L3_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L3_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='L3_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L3_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>L4</td>
+                                                                                    <td><input  id='L4_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L4_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='L4_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L4_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>L5</td>
+                                                                                    <td><input  id='L5_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L5_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='L5_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='L5_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>S1</td>
+                                                                                    <td><input  id='S1_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S1_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='S1_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S1_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>S2</td>
+                                                                                    <td><input  id='S2_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S2_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='S2_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S2_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>S3</td>
+                                                                                    <td><input  id='S3_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S3_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='S3_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S3_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>S4-5</td>
+                                                                                    <td><input  id='S45_Right_lt' class='form-control' type='text'></td>
+                                                                                    <td><input  id='S45_Left_lt' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input  id='S45_Right_pp' class='form-control' type='text'></td>
+                                                                                    <td><input   id='S45_Left_pp' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>TOT</td>
+                                                                                    <td><input readonly="readonly" id='Right_lt_total' class='form-control' type='text'></td>
+                                                                                    <td><input readonly="readonly" id='Left_lt_total' class='form-control' type='text'></td>
+                                                                                    <td></td>
+                                                                                    <td><input readonly="readonly" id='Right_pp_total' class='form-control' type='text'></td>
+                                                                                    <td><input readonly="readonly" id='Left_pp_total' class='form-control' type='text'></td>
+                                                                                </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </form>
 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="img-responsive">
-                                                            <svg   class="img-responsive" version="1.1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"  viewBox="0 0 360 507" enable-background="new 0 0 360 507" xml:space="preserve">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="img-responsive" id="in">
+                                                                        <div class="Harthaout" id="Harthaout">
+                                                                            <div class="Harthain" id="Harthain">
+
+                                                                                <svg   class="img-responsive" version="1.1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"  viewBox="0 0 360 507" enable-background="new 0 0 360 507" xml:space="preserve">
 <g id="Man">
 	<path style="fill:black" d="M221.976,289.875c-1.376,3.25-2.274,11.875-2.899,18.375s1.75,22.25,1.75,28.875s-2.25,38-2.875,43.5
 		s1.125,16.625,1.75,24.5s-2.25,32.75-2.375,38.625s1,17.125,2.125,21.875s0.375,10.625,0,11.875s0.5,2.375,1.375,8.875
@@ -1302,123 +1342,126 @@
 		<line fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="44.5" y1="220.498" x2="44.5" y2="257.021"></line>
     </g>
 </svg>
+                                                                            </div></div>
 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div  class="row" style="margin:10px, font-size:10px;">
+                                                                <div class="col-md-2">
+                                                                    <div class="h4"> Neuorogical Level</div>
+                                                                    <div class="h5">The Most Caudal segmenat <br> with  normal function</div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="table-responsive">
+                                                                        <table>
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th></th>
+                                                                                <th>R</th>
+                                                                                <th>L</th>
+
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td rowspan="3">Sensory<br>Motor</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><input id="sensory_R" readonly class="form-control" type="text" size=1 ></td>
+                                                                                <td><input id="sensory_L" readonly class="form-control" type="text" size=1 ></td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td><input id="motor_R"readonly class="form-control" type="text" size=1 ></td>
+                                                                                <td><input id="motor_L"readonly class="form-control" type="text" size=1 ></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="table-responsive">
+                                                                        <table>
+                                                                            <thead>
+                                                                            <tr><td> </td> </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td>COMPLETE OR INCOMPLETE?</td>
+                                                                                <td><input id = "complete" readonly class="form-control" type="text" size=1 ></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="2" class="h6">Incomplete = Any sensory or motor function in S4-S5</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>ASIA IMPAIRMENT SCALE</td>
+                                                                                <td><input id="scale"readonly class="form-control" type="text" size=1 ></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <h5><br>
+                                                                        (In complete injuries only)
+                                                                        Zone of partial
+                                                                        preservation
+                                                                        Most caudal level with any
+                                                                        innervation
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="table-responsive">
+                                                                        <table >
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th></th>
+                                                                                <th>R</th>
+                                                                                <th>L</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td rowspan="3">Sensory<br>Motor</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><input id="sensory2_R"readonly class="form-control" type="text" size=1 ></td>
+                                                                                <td><input id="sensory2_L"readonly class="form-control" type="text" size=1 ></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><input id="motor2_R" readonly class="form-control" type="text" size=1 ></td>
+                                                                                <td><input id="motor2_L" readonly class="form-control" type="text" size=1 ></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
                                                         </div>
+                                                        <form class="text-left" th:attr="action=${testFormSave}" id="testForm" method="post">
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label">Test Name</label>
+                                                                <input type="text" name="testName" class="form-control" >
+                                                            </div>
+                                                            <input id="testContent"  placeholder="test Name" class="form-control" type="hidden" name="testData"/>
+                                                            <div class="form-group label-floating is-empty">
+                                                                <label class="control-label">Test Info</label>
+                                                                <textarea class="form-control" name="testInfo" rows="3"></textarea>
+                                                                <span class="material-input"></span></div>
+                                                            <div class="modal-footer">
+                                                                <h1>
+                                                                    <button  type="submit" id="saveTest" class="btn btn-primary">Calculate & Save Test</button>
+                                                                </h1>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                                <div  class="row" style="margin:10px, font-size:10px;">
-                                                    <div class="col-md-2">
-                                                        <div class="h4"> Neuorogical Level</div>
-                                                        <div class="h5">The Most Caudal segmenat <br> with  normal function</div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="table-responsive">
-                                                            <table>
-                                                                <thead>
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th>R</th>
-                                                                    <th>L</th>
 
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td rowspan="3">Sensory<br>Motor</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                </tr>
 
-                                                                <tr>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="table-responsive">
-                                                            <table>
-                                                                <thead>
-                                                                <tr><td> </td> </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td>COMPLETE OR INCOMPLETE?</td>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2" class="h6">Incomplete = Any sensory or motor function in S4-S5</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>ASIA IMPAIRMENT SCALE</td>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <h5><br>
-                                                            (In complete injuries only)
-                                                            Zone of partial
-                                                            preservation
-                                                            Most caudal level with any
-                                                            innervation
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="table-responsive">
-                                                            <table >
-                                                                <thead>
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th>R</th>
-                                                                    <th>L</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td rowspan="3">Sensory<br>Motor</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                    <td><input readonly class="form-control" type="text" size=1 ></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
-                                            <form th:attr="action=${testFormSave}" id="testForm" method="post">
-                                                <div class="form-group">
-                                                    <label class="h3">Test Name: </label>
-                                                    <input id="testName" placeholder="test Name" class="form-control" type="text" name="testName"/>
-                                                </div>
-                                                <input id="testContent"  placeholder="test Name" class="form-control" type="hidden" name="testData"/>
-                                                <div class="form-group">
-                                                    <label class="h3">Test Info: </label>
-                                                    <textarea id="testInfo" placeholder="test Info" rows="5" class="form-control" type="text" name="testInfo"></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <h1>
-                                                        <button  type="submit" id="saveTest" class="btn btn-primary btn-lg">Calculate & Save Test</button>
-                                                    </h1>
-                                                </div>
-                                            </form>
                                         </div>
+
                                     </div>
-
-
-
+                                </div>
                             </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -1426,70 +1469,65 @@
         </div>
     </div>
 
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; ASIA Neurological Testing 2017</p>
-            </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="#">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Company
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="copyright pull-right">
+                &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+            </p>
         </div>
     </footer>
-
 </div>
-
-<div class="modal fade" id="addValue" role="dialog">
-    <div class= "modal-dialog modal-sm">
-
-        <!-- Modal content-->
-        <div class="modal-content text-center">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add Value</h4>
-            </div>
-            <div class="modal-body">
-                <h5 class="text-primary" id="modalText"></h5>
-                <div class="btn-group btn-group-justified arrActiviteit arrUpdate" data-toggle="buttons">
-                    <label value="0" class="btn btn-danger active" data-wat='foo'>
-                        <input type="radio">0
-                    </label>
-                    <label value="1" class="btn btn-warning" data-wat='bar'>
-                        <input type="radio">1
-                    </label>
-                    <label value="2" class="btn btn-success" data-wat='something'>
-                        <input type="radio">2
-                    </label>
-                    <label value="NT" class="btn btn-default" data-wat='orElse'>
-                        <input type="radio">NT
-                    </label>
-                </div>
-                <hr>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" id="downValues" checked>
-                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                        Auto Selection
-                    </label>
-                </div>
-                <div class="modal-footer">
-                    <button id="addVal" onclick="getValue()" type="button" class="btn btn-info" >Add value</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+</div>
     </div>
 </div>
-<!-- /.container -->
-
-<!-- jQuery -->
-<script src="/js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/human.js"></script>
 
 </body>
+
+<!--   Core JS Files   -->
+<script src="/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/material.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Material Dashboard javascript methods -->
+<script src="/js/material-dashboard.js"></script>
+
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="/js/demo.js"></script>
+
+<script src="/js/human.js"></script>
+<script src="/js/p5.js"></script>
 
 </html>

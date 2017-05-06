@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../img/apple-icon.png" />
@@ -27,6 +27,8 @@
 </head>
 
 <body>
+         \
+    <!-- /.container -->
 
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="/img/sidebar-1.jpg">
@@ -82,13 +84,26 @@
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/home">Home</a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/home">Home</a>
+
+                <div class="pull-right text-right">
+                    <li th:attr="style=${logged}" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img class="img-responsive img-circle" style="display:inline;width:30px;height:30px"  th:attr="src=${photo}">
+                            <span th:text="${user.userName}"></span>
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:attr="href=${profile}">Profile</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
                 </div>
             </div>
         </nav>
@@ -100,6 +115,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="row">
+
                                     <h1 class="text-center">Welcome To The<br> ASIA Neurological Testing
                                     </h1><hr><Br>
                                     <div class="card-header" data-background-color="purple">
