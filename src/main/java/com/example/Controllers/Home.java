@@ -43,15 +43,22 @@ public class Home {
         return "home";
     }
 
-    @RequestMapping(value = "/About")
+    @RequestMapping(value = "/about")
     public String about()
     {
         return "about";
     }
 
 
+    @RequestMapping(value = "/contactUs")
+    public String contactUs()
+    {
+        return "contactUs";
+    }
+
     @RequestMapping("/blog")
     public String blog (Model model){
+        model.addAttribute("profile","/users/0/");
         model.addAttribute("posts",postsRepo.findAll());
         return "blog";
     }

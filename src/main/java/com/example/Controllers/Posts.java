@@ -67,6 +67,10 @@ public class Posts {
         model.addAttribute("postOwner",userRepo.findOne(post.getCreatedBy()));
         model.addAttribute("post",post);
         model.addAttribute("comments",commentRepo.findByPostId(postId));
+        model.addAttribute("profile","/users/0/");
+        model.addAttribute("user",userRepo.findOne(post.getCreatedBy()));
+        model.addAttribute("createComment","/users/0/posts/"+postId+"/addComment");
+
 
         return "post";
     }
@@ -90,21 +94,23 @@ public class Posts {
     }
 
 
-    @RequestMapping(value = "/posts/{post}/addComment",method = RequestMethod.POST)
+    @RequestMapping(value = "/posts/{postId}/addComment",method = RequestMethod.POST)
     @ResponseBody
-    public String addComment(HttpServletResponse response, @PathVariable Long postId, @ModelAttribute Comment comment) throws IOException {
+    public Comment addComment(HttpServletResponse response, @PathVariable Long postId,@RequestParam("comment") String comment1) throws IOException {
 
-        if(postsRepo.findOne(postId)==null)
+        if(postId==null||postsRepo.findOne(postId)==null)
         {
             response.sendRedirect("/blog");
-            return "";
+            return null;
         }
         else
         {
+            Comment comment  = new Comment();
+         comment.setComment(comment1);
          comment.setCreatedDate(new Date());
-         comment.setCreatedBy(postId);
+         comment.setPostId(postId);
          commentRepo.save(comment);
-         return commentRepo.findAll().toString();
+         return comment;
         }
 
     }
@@ -122,6 +128,23 @@ public class Posts {
             }
             else
                 return null;
+        }
+    }
+
+
+    @RequestMapping(value = "/posts/delete",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String deleteCase(@SessionAttribute(required = false) User user ,
+                             @PathVariable("user") String user1 ,
+                             @RequestParam long id)
+    {
+        if(user==null||!user1.equals(user.getUserName()))
+            return "/login";
+        else
+        {
+            if(postsRepo.findOne(id)==null)return null;
+            postsRepo.delete(id);
+            return "{\"Success\":1}";
         }
     }
 
