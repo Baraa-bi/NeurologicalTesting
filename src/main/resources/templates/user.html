@@ -159,8 +159,8 @@
                                             </div>
                                             <hr>
                                             <h1 class="text-warning text-center" th:text="${#lists.size(posts)}==0?'You have no posts yet'" ></h1>
-                                            <div th:each="post,i: ${posts}" th:attr="class=${i.index%2==0}?'col-md-9':'col-md-9 col-md-offset-3'">
-                                                <div class="card text-left" style="margin:3">
+                                            <div th:each="post,i: ${posts}"  th:attr="class=${i.index%2==0}?'col-md-9':'col-md-9 col-md-offset-4'">
+                                                <div class="card text-left" th:attr="id=${post.postId}" style="margin:3">
                                                 <div class="card-header" data-background-color="purple">
                                                     <a href="/users">
                                                     <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=${photo}">
@@ -171,15 +171,15 @@
                                                 <p><i class="fa fa-clock-o"></i> Posted on:<b  th:text="|${post.createdDate}|"></b></p>
                                                 <hr>
                                                 <a th:href="${profile}+'/posts/'+${post.postId}" class="text-primary">
-                                                    <img class="img-responsive"  th:attr="src=${profile}+'/posts/'+${post.postId}+'.png'">
+                                                    <img class="img-responsive" style="width:100%;height:300px" th:attr="src=${profile}+'/posts/'+${post.postId}+'.png'">
                                                 </a>
                                                     <div class="h5" style="border:2;">
                                                 <p th:text="${post.postText}"></p>
                                                     </div>
                                                         <hr>
                                                     <div class="pull-right">
-                                                    <a class="btn btn-danger">Remove</a>
-                                                    <a class="btn btn-primary">Read More</a>
+                                                        <a th:attr="onclick=|deletePost('${post.postId}','${profile}/posts/delete?id=${post.postId}')|" class="btn btn-danger">Remove</a>
+                                                        <a th:href="|${profile}/posts/${post.postId}|" class="btn btn-primary">Read More</a>
                                                     </div>
                                                 </div>
                                             </div>

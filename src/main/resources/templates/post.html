@@ -88,7 +88,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/home">Login</a>
+                    <a class="navbar-brand" href="/home">Post</a>
                 </div>
             </div>
         </nav>
@@ -99,11 +99,39 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                Login
+                                <a th:attr="href=|/users/publicUser/${post.createdBy}|">
+                                    <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=|/users/${post.createdBy}Photo|">
+                                     <span class="h5" th:text="${user.userName}"></span>
+                                </a>
                             </div>
                             <div class="card-content">
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
+                                        <hr>
+                                        <h1 class="text-center" th:text="${post.postTitle}"></h1>
+                                        <a th:href="|${profile}/posts/${post.postId}|" class="text-primary">
+                                            <img class="img-responsive"  style="width:100%;height:300px" th:attr="src=|${profile}/posts/${post.postId}.png|">
+                                        </a>
+                                        <div class="h5" style="border:2;">
+                                            <p th:text="${post.postText}"></p>
+                                        </div>
+                                        <hr>Comments :
+                                        <div id="comments">
+                                        <div  class="card" th:each="comment : ${comments}" data-background-color="blue">
+                                            <h6 th:text="${comment.createdDate}"></h6>
+                                            <h3 th:text="${comment.comment}"></h3>
+                                        </div>
+                                        </div>
+                                        <hr>
+                                        <form id="commentForm" method="POST" th:attr="action=${createComment}">
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label">Add Comment</label>
+                                                <textarea class="form-control" name="comment" rows="5"></textarea>
+                                                <span class="material-input"></span></div>
+                                            <div class="form-group label-floating">
+                                                <button type="submit" class="btn btn-primary pull-right">Comment</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -169,5 +197,7 @@
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="/js/demo.js"></script>
+<script src="/js/human.js"></script>
+
 
 </html>

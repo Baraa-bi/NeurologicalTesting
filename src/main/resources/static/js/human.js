@@ -198,6 +198,49 @@ function deleteCase(caseId,link){
 }
 
 
+$("#commentForm").submit(function(e){
+    let postData = $(this).serializeArray();
+    let formURL = $(this).attr("action");
+    $.ajax(
+    {
+        url :formURL,
+        type: "POST",
+        crossDomain: true,
+        data : postData,
+        success:function(json, textStatus, jqXHR)
+        {
+
+         $("#comments").append(
+         '<div  class="card" data-background-color="blue">'+
+                                                      '<h6>'+json.createdDate+'</h6>'
+                                                      +'<h3>'+json.comment+'</h3>'
+                                                  +'</div>');
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            show('Something went wrong');
+        }
+    });
+    e.preventDefault();
+});
+
+function deletePost(postId,link){
+ $.ajax(
+    {
+        url :link,
+        type: "POST",
+        success:function(json, textStatus, jqXHR)
+        {
+         $("#"+postId).remove();
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            show('Something Went Wrong .. In Deleting Post');
+        }
+    });
+
+}
+
 function editTest(link,editLink)
 {
 
@@ -665,9 +708,9 @@ let headerText;
 let buttonTypeText = ['LT', 'PP', 'MS'];
 
 function setup(){
-  canvas = createCanvas(720, 400);
+  canvas = createCanvas(720, 600);
   canvas.parent('Harthain')
-  // canvas.class('hid')
+  canvas.class('hid')
   frameRate(20);
   textSize(19);
   textFont('Calibri')

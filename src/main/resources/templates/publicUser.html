@@ -135,7 +135,7 @@
                                                     <p><i class="fa fa-clock-o"></i> Posted on:<b  th:text="|${post.createdDate}|"></b></p>
                                                     <hr>
                                                     <a th:href="${profile}+'/posts/'+${post.postId}" class="text-primary">
-                                                        <img class="img-responsive"  th:attr="src=${profile}+'/posts/'+${post.postId}+'.png'">
+                                                        <img class="img-responsive" style="height:300px"  th:attr="src=${profile}+'/posts/'+${post.postId}+'.png'">
                                                     </a>
                                                     <div class="h5" style="border:2;">
                                                         <p th:text="${post.postText}"></p>
