@@ -111,7 +111,7 @@ public class Posts {
 
     @RequestMapping(value = "/posts/{post}.png")
     @ResponseBody
-    public ResponseEntity getProfileImage(@SessionAttribute User user, @PathVariable("user") String userName, @PathVariable("post") Long post)
+    public ResponseEntity getProfileImage(@SessionAttribute(required = false) User user, @PathVariable("user") String userName, @PathVariable("post") Long post)
     {
        {
             if(fileRepo.findByPostId(post)!=null) {

@@ -3,6 +3,7 @@ package com.example.Controllers;
 import com.example.Models.File;
 import com.example.Models.User;
 import com.example.Repositories.FileRepo;
+import com.example.Repositories.PostsRepo;
 import com.example.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +31,7 @@ public class Users {
 
     private UserRepo userRepo;
     private FileRepo fileRepo;
-
+    private PostsRepo postsRepo;
     @RequestMapping("/user")
     public String user(Model model)
     {
@@ -66,6 +67,17 @@ public class Users {
             model.addAttribute("userName","please Login First");
             return "login";
         }
+    }
+
+    @RequestMapping("/publicUser/{userId}")
+    public String publicUser(Model model,@PathVariable Long userId)
+    {
+            User user = userRepo.findOne(userId);
+            model.addAttribute("user",user);
+            model.addAttribute("photo","/users/"+user.getUserName()+".png");
+            model.addAttribute("profile","/users/"+user.getUserName());
+            model.addAttribute("posts",postsRepo.findBycreatedBy(userId));
+            return "publicUser";
     }
 
     @RequestMapping("")
@@ -108,7 +120,7 @@ public class Users {
         }
     }
 
-    @RequestMapping(value = "/{userName}.png")
+    @RequestMapping(value = {"/{userName}.png","/{userId}.png"})
     @ResponseBody
     public ResponseEntity getProfileImage(@PathVariable String userName)
     {
@@ -125,6 +137,23 @@ public class Users {
 
     }
 
+    @RequestMapping(value = {"/{userId}Photo"})
+    @ResponseBody
+    public ResponseEntity getProfileImage1(@PathVariable Long userId)
+    {
+
+        User user1 = userRepo.findOne(userId);
+        if(fileRepo.findByUserId(user1.getId())!=null) {
+            byte[] content = fileRepo.findByUserId(user1.getId()).getFile();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_PNG);
+            return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);
+        }
+        else
+            return null;
+
+    }
+
     @Autowired
     public void setUserRepo(UserRepo userRepo) {
         this.userRepo = userRepo;
@@ -133,5 +162,10 @@ public class Users {
     @Autowired
     public void setFileRepo(FileRepo fileRepo) {
         this.fileRepo = fileRepo;
+    }
+
+    @Autowired
+    public void setPostsRepo(PostsRepo postsRepo) {
+        this.postsRepo = postsRepo;
     }
 }

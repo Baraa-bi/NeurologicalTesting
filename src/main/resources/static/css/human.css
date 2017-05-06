@@ -7,6 +7,10 @@ input,th{
 text-align:center;
 }
 
+td,form-group{
+    height:50px;
+}
+
 
 
 .profile-img{
@@ -20,9 +24,6 @@ text-align:center;
 
 path:hover{
     fill:rgba(33, 236, 246, 0.30);
-}
-.nothing {
-  visibility: hidden;;
 }
 
 

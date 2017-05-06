@@ -88,7 +88,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">New Patient</a>
+                    <a class="navbar-brand" href="/login">User Profile</a>
                 </div>
             </div>
         </nav>
@@ -96,62 +96,57 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" data-background-color="purple">
-                                <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=${photo}">
-                                <a class="h4 text-primary" href="/users" th:text="${user.userName}">User</a>
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img" th:attr="src=${photo}" src="/img/faces/marc.jpg" />
+                                </a>
                             </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <h3 class="text-center">Add New Patient</h3>
-                                    <div class="col-md-offset-2 col-lg-8">
-                                        <form th:attr="action=${newCase}" method="post" enctype="multipart/form-data">
-                                            <div class="h6 text-danger" th:text="${userName}"></div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Patient name</label>
-                                                <input type="text" name="caseName" class="form-control" >
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Email address</label>
-                                                <input name="email" type="email" class="form-control" >
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Gender</label>
-                                                <select class="form-control" id="sex" name="sex">
-                                                    <option  name="sex" value="1">Male</option>
-                                                    <option  name="sex" value="0">Female</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Birth Date</label>
-                                                <input name="birthDate" type="text" class="form-control" >
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Mental State</label>
-                                                <input name="mentalState" type="text" class="form-control" >
-                                            </div>
-                                            <div class="form-group is-empty is-fileinput">
-                                                <input type="file" name="file" id="inputFile4" accept="image/*" multiple="">
-                                                <div class="input-group">
-                                                    <input type="text" readonly=""  class="form-control" placeholder="Patient Profile Picture">
-                                                    <span class="input-group-btn input-group-sm">
-                  <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">attach_file</i>
-                  </button>
-                </span>
+
+                            <div class="content">
+                                <h6 class="category text-gray" th:text="${user.job}">CEO / Co-Founder</h6>
+                                <h4 class="card-title" th:text="${user.userName}">Alec Thompson</h4>
+                                <h6 class="card-title" th:text="${user.email}">Alec Thompson</h6>
+                                <p class="card-content" th:text="${user.description}">
+                                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                </p>
+
+                                <div class="col-lg-12">
+
+                                    <ul id="myTab" class="nav nav-tabs nav-justified">
+                                        <li class="active"><a href="#service-two" data-toggle="tab" aria-expanded="false"> <i class="fa fa-file-text"></i>Posts</a>
+                                        </li>
+                                    </ul>
+
+                                    <div id="myTabContent" class="tab-content">
+                                        <div  class="tab-pane fade active in" id="service-two"><hr>
+                                            <h1 class="text-warning text-center" th:text="${#lists.size(posts)}==0?'You have no posts yet'" ></h1>
+                                            <div th:each="post,i: ${posts}" th:attr="class=${i.index%2==0}?'col-md-9':'col-md-9 col-md-offset-3'">
+                                                <div class="card text-left" style="margin:3">
+                                                    <div class="card-header" data-background-color="purple">
+                                                        <a href="/users">
+                                                            <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=${photo}">
+                                                        </a>
+                                                        <a href="#" th:text="${post.postTitle}">
+                                                        </a>
+                                                    </div><hr>
+                                                    <p><i class="fa fa-clock-o"></i> Posted on:<b  th:text="|${post.createdDate}|"></b></p>
+                                                    <hr>
+                                                    <a th:href="${profile}+'/posts/'+${post.postId}" class="text-primary">
+                                                        <img class="img-responsive"  th:attr="src=${profile}+'/posts/'+${post.postId}+'.png'">
+                                                    </a>
+                                                    <div class="h5" style="border:2;">
+                                                        <p th:text="${post.postText}"></p>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="pull-right">
+                                                        <a class="btn btn-primary">Read More</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label">Patient Info</label>
-                                                    <textarea name="info" class="form-control" rows="5"></textarea>
-                                                    <span class="material-input"></span></div>
-
-
-                                            <div class="form-group label-floating">
-                                                <button type="submit" class="btn btn-primary pull-right">Add Patient</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -194,6 +189,7 @@
         </div>
     </footer>
 </div>
+</div>
 
 </body>
 
@@ -216,5 +212,5 @@
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="/js/demo.js"></script>
-
+<script src="/js/human.js"></script>
 </html>

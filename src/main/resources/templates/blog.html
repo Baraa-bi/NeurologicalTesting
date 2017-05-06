@@ -107,8 +107,8 @@
                                     <div th:each="post,i: ${posts}" th:attr="class=${i.index%2==0}?'col-md-8':'col-md-8 col-md-offset-4'">
                                         <div class="card text-left" style="margin:3">
                                             <div class="card-header" data-background-color="purple">
-                                                <a href="/users">
-                                                    <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=${photo}">
+                                                <a th:attr="href=|/users/publicUser/${post.createdBy}|">
+                                                    <img class="img-responsive img-circle" style="display:inline;width:40px;height:40px"  th:attr="src=|/users/${post.createdBy}Photo|">
                                                     </a>
                                                 <a href="#" th:text="${post.postTitle}">
                                                 </a>

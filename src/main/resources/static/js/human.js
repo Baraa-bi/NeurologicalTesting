@@ -7,8 +7,6 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
     loadData();
     testHtml= $("#testData").html();
-    $("#saveTest").click(Calculate);
-
     });
 
 
@@ -39,10 +37,10 @@ function Calculate(){
       else if(key.indexOf('Left_pp' > -1))
         totals.Left_pp += parseInt(data[key]);
   }
-    $('#Right_lt_total').val(totals.Right_lt);
-    $('#Right_pp_total').val(totals.Right_pp);
-    $('#Left_lt_total').val(totals.Left_lt);
-    $('#Left_pp_total').val(totals.Left_pp);
+    $('#Right_lt_total').attr('value',totals.Right_lt);
+    $('#Right_pp_total').attr('value',totals.Right_pp);
+    $('#Left_lt_total').attr('value',totals.Left_lt);
+    $('#Left_pp_total').attr('value',totals.Left_pp);
 
     let musData = res.musData;
     let musTotals = {
@@ -57,30 +55,31 @@ function Calculate(){
         musTotals.R += parseInt(musData[key]);
     }
 
-    $('#mus_total_Left').val(musTotals.R)
-    $('#mus_total_Right').val(musTotals.L)
+    $('#mus_total_Left').attr('value',musTotals.R)
+    $('#mus_total_Right').attr('value',musTotals.L)
 
 
 
 
 
 
-    $('#sensory_L').val('C1')
-    $('#sensory_R').val('C2')
+    $('#sensory_L').attr('value','C1')
+    $('#sensory_R').attr('value','C2')
 
 
-    $('#sensory2_L').val('C2')
-    $('#sensory2_R').val('C3')
+    $('#sensory2_L').attr('value','C2')
+    $('#sensory2_R').attr('value','C3')
 
-    $('#motor_L').val('C1')
-    $('#motor_R').val('C2')
+    $('#motor_L').attr('value','C1')
+    $('#motor_R').attr('value','C2')
 
 
-    $('#motor2_L').val('C2')
-    $('#motor2_R').val('C3')
+    $('#motor2_L').attr('value','C2')
+    $('#motor2_R').attr('value','C3')
 
-    $('#complete').val('I');
-    $('#scale').val('C');
+    $('#complete').attr('value','I');
+    $('#scale').attr('value','C');
+
 }
 
 function getAllValues(){
@@ -254,6 +253,7 @@ function deleteTest(testId,link){
 
 
 $("#testForm").submit(function(e){
+        Calculate();
         $("#testContent").attr("value",$("#testData").html());
 });
 
@@ -387,7 +387,7 @@ $("#caseForm").submit(function(e){
       $("path[data-name='"+ pathDataName +"']" ).attr("fill", pathColor);
 
 
-      $("input[id=textDermatomId]").text(val);
+      $("#"+textDermatomId).attr("value",val);
 
 
       textElement.value = val;
